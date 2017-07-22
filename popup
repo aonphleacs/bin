@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# how long should the popup remain?
+duration=3
+
+# define geometry
+in1="$@"
+inw=$(txtw "$in1")
+barx=$((1900-inw))
+bary=20
+barw=$((inw+20))
+barh=20
+
+# colors
+bar_bg='#ff333333'
+bar_fg='#ffffffff'
+
+# font used
+
+# compute all this
+baropt="-d -g ${barw}x${barh}+${barx}+${bary} -B${bar_bg}"
+
+#Create the popup and make it live for 3 seconds
+(echo " $@"; sleep ${duration}) | lemonbar ${baropt}
+
+#debug
+echo "Main in $@"
+echo "Clean in $in1"
+echo "In width $inw"
+echo "Bar width $barw"
+echo "Bar X $barx"
